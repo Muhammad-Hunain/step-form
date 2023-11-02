@@ -1,0 +1,92 @@
+<!-- FILEPATH: /E:/Task4/washtype.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Interior</title>
+    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="button-container">
+      <button class="select-button" id="select-buttons">&lt</button>
+      <p>Select Your Extras</p>
+    </div>
+    <div class="interiordiv">
+      <h2>Interior</h2>
+      <div class="extra">
+        <div class="interiorimg">
+          <img src="seat.png" alt="interior" height="120px" width="120px" />
+        </div>
+        <div class="interiortext">
+          <p>Car Seats (simple wash)</p>
+          <div class="priceadd">
+            <p>​€ 1.99</p>
+            <button class="add-option" data-category="Interior (Extras)" data-name="Car Seats (simple wash)" data-price="1.99">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="interiorimg">
+          <img src="pet.png" alt="interior" height="120px" width="120px" />
+        </div>
+        <div class="interiortext">
+          <p>Pet Hair Removal</p>
+          <div class="priceadd">
+            <p>​€ 1.99</p>
+            <button class="add-option" data-category="Interior (Extras)" data-name="Pet hair removal" data-price="1.99">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="interiorimg">
+          <img src="carpet.png" alt="interior" height="120px" width="120px" />
+        </div>
+        <div class="interiortext">
+          <p>Car Carpets (simple wash)</p>
+          <div class="priceadd">
+            <p>​€ 1.99</p>
+            
+            <button class="add-option" data-category="Interior (Extras)" data-name="Car Carpets (simple wash)" data-price="1.99">Add</button>
+          
+          </div>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="interiorimg">
+          <img src="dirty.png" alt="interior" height="120px" width="120px" />
+        </div>
+        <div class="interiortext">
+          <p>Extra Dirty</p>
+          <div class="priceadd">
+            <p>​€ 1.99</p>
+            
+            <button class="add-option" data-category="Interior (Extras)" data-name="Extra Dirty" data-price="1.99">Add</button>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nextbtn">
+      <button id="nextButton">Next</button>
+
+     </div>
+     <script>
+      document.getElementById("nextButton").addEventListener("click", function() {
+          window.location.href = "exterior.html";
+      });
+      document.getElementById("select-buttons").addEventListener("click", function() {
+        const selectedChecklists = JSON.parse(localStorage.getItem('selectedChecklists'));
+        const washType = selectedChecklists.washType;
+
+        window.location.href = `washtype.html?type=${washType}`;
+        console.log("list",selectedChecklists);
+      });
+      
+      
+  </script>
+  
+     <script src="common.js"></script>
+  </body>
+</html>

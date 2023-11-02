@@ -1,0 +1,115 @@
+<!-- FILEPATH: /E:/Task4/summary.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Summary</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css" />
+        <style>
+           .mainsummary {
+    font-family: Arial, sans-serif;
+    background-color: #e8e8e8;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.summary-container {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #a18afb;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.summary-container:hover {
+    background-color: #c0acf7;
+    color: rgb(2, 2, 2);
+    
+}
+
+.summary-button {
+    margin-top: 20px;
+    width: 120px;
+    height: 30px;
+    background-color: #8d6ada;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px #e0dfdf;
+    transition: background-color 0.3s;
+}
+
+.summary-button:hover {
+    background-color: #a48be6;
+}
+
+.summary-text {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.sum{
+    text-align: center;
+    margin-top: -52px;
+    margin-bottom: 2px;
+    font-size: 25px;
+}
+
+
+@media screen and (max-width: 480px) {
+    .summary-container {
+        max-width: 90%;
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 720px) {
+    .summary-container {
+        max-width: 80%;
+    }
+}
+
+        </style>
+    </head>
+    <body>
+        <div class="button-container">
+            <button class="select-button" id="select-button">&lt</button>
+            <p>Wash Summary</p>
+          </div>
+        <div class="mainsummary">
+            <div class="sum">
+                <h1>Summary</h1>
+            </div>
+           
+            <div class="summary-container">
+           
+            <div class="summary-text" id="selected-options"></div>
+            <h3>Total Price</h3>
+            <p class="summary-text" id="interior-price" ></p>
+            <p class="summary-text" id="exterior-price" ></p>
+            <p class="summary-text" id="service-price"></p>
+            <p class="summary-text" id="total-price"></p>
+        </div>
+        
+        </div>
+       
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                calculateTotalPrice();
+               
+            });
+            document.getElementById("select-button").addEventListener("click", function() {
+          window.location.href = "credential.html";
+      });
+        </script>
+        
+        <script src="common.js"></script>
+    </body>
+</html>

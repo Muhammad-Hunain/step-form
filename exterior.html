@@ -1,0 +1,71 @@
+<!-- FILEPATH: /E:/Task4/washtype.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exterior</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="button-container">
+      <button class="select-button" id="select-button">&lt</button>
+      <p>Select Your Extras </p>
+    </div>
+    <div class="interiordiv">
+      <h2>Exterior</h2>
+      
+      
+      <div class="extra">
+        <div class="interiorimg">
+          <img src="dirty.png" alt="interior" height="120px" width="120px" />
+        </div>
+        <div class="interiortext">
+          <p>Extra Dirty</p>
+          <div class="priceadd">
+            <p>€ 1.99</p>
+            <button class="add-option" data-category="Exterior (Extras)" data-name="Extra Dirty" data-price="1.99">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="interiorimg">
+          <img src="rims.png" alt="interior" height="120px" width="120px" />
+        </div>
+        <div class= "interiortext">
+          <p>Rims & Tires</p>
+          <div class="priceadd">
+            <p>€ 1.99</p>
+            <button class="add-option" data-category="Exterior (Extras)" data-name="Rims & Tires" data-price="1.99">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="interiorimg">
+          <img src="insect.png" alt="interior" height="120px" width="120px" />
+        </div>
+        <div class="interiortext">
+          <p>Dead insect removal</p>
+          <div class="priceadd">
+            <p>€ 1.99</p>
+            <button class="add-option" data-category="Exterior (Extras)" data-name="Dead insect removal" data-price="1.99">Add</button>
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+   
+    <div class="nextbtn">
+      <button id="nextButton">Next</button>
+     </div>
+     <script>
+      document.getElementById("nextButton").addEventListener("click", function() {
+          window.location.href = "credential.html";
+      });
+      document.getElementById("select-button").addEventListener("click", function() {
+          window.location.href = "interior.html";
+      });
+  </script>
+     <script src="common.js"></script>
+  </body>
+</html>
