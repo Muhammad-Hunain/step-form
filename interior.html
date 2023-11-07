@@ -2,16 +2,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Interior</title>
-    
+
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="button-container">
       <button class="select-button" id="select-buttons">&lt</button>
-      <p>Select Your Extras</p>
     </div>
     <div class="interiordiv">
       <h2>Interior</h2>
@@ -23,7 +22,14 @@
           <p>Car Seats (simple wash)</p>
           <div class="priceadd">
             <p>​€ 1.99</p>
-            <button class="add-option" data-category="Interior (Extras)" data-name="Car Seats (simple wash)" data-price="1.99">Add</button>
+            <button
+              class="add-option"
+              data-category="Interior (Extras)"
+              data-name="Car Seats (simple wash)"
+              data-price="1.99"
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
@@ -35,7 +41,14 @@
           <p>Pet Hair Removal</p>
           <div class="priceadd">
             <p>​€ 1.99</p>
-            <button class="add-option" data-category="Interior (Extras)" data-name="Pet hair removal" data-price="1.99">Add</button>
+            <button
+              class="add-option"
+              data-category="Interior (Extras)"
+              data-name="Pet hair removal"
+              data-price="1.99"
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
@@ -47,9 +60,15 @@
           <p>Car Carpets (simple wash)</p>
           <div class="priceadd">
             <p>​€ 1.99</p>
-            
-            <button class="add-option" data-category="Interior (Extras)" data-name="Car Carpets (simple wash)" data-price="1.99">Add</button>
-          
+
+            <button
+              class="add-option"
+              data-category="Interior (Extras)"
+              data-name="Car Carpets (simple wash)"
+              data-price="1.99"
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
@@ -61,32 +80,54 @@
           <p>Extra Dirty</p>
           <div class="priceadd">
             <p>​€ 1.99</p>
-            
-            <button class="add-option" data-category="Interior (Extras)" data-name="Extra Dirty" data-price="1.99">Add</button>
-          
+
+            <button
+              class="add-option"
+              data-category="Interior (Extras)"
+              data-name="Extra Dirty (interior)"
+              data-price="1.99"
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div class="nextbtn">
-      <button id="nextButton">Next</button>
+      <button id="nextButton">próximo</button>
+    </div>
+    <script>
+      document
+        .getElementById("nextButton")
+        .addEventListener("click", function () {
+          const data = JSON.parse(localStorage.getItem("selectedChecklists")); // Parse the data as JSON
+          console.log("mydata", data);
 
-     </div>
-     <script>
-      document.getElementById("nextButton").addEventListener("click", function() {
-          window.location.href = "exterior.html";
-      });
-      document.getElementById("select-buttons").addEventListener("click", function() {
-        const selectedChecklists = JSON.parse(localStorage.getItem('selectedChecklists'));
-        const washType = selectedChecklists.washType;
+          if (data) {
+           if (data.exterior && data.exterior.length === 0) {
+              window.location.href = "credential.html";
+            } else {
+              // If both interior and exterior have items, you can navigate to checkout.html
+              window.location.href = "exterior.html";
+            }
+          } else {
+            window.location.href = "exterior.html";
+          }
+        });
+      document
+        .getElementById("select-buttons")
+        .addEventListener("click", function () {
+          const selectedChecklists = JSON.parse(
+            localStorage.getItem("selectedChecklists")
+          );
+          const washType = selectedChecklists.washType;
+          window.location.href = `washtype.html?type=${washType}`;
+          console.log("list", selectedChecklists);
+          localStorage.removeItem("selectedChecklists");
+          localStorage.removeItem("selectedOptions");
+        });
+    </script>
 
-        window.location.href = `washtype.html?type=${washType}`;
-        console.log("list",selectedChecklists);
-      });
-      
-      
-  </script>
-  
-     <script src="common.js"></script>
+    <script src="common.js"></script>
   </body>
 </html>

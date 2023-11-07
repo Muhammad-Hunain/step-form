@@ -24,7 +24,7 @@
                 ));
 
                 if (isAlreadyAdded) {
-                    alert(`"${name}" from "${category}" is already added.`);
+                button.textContent = "Already Added";
                 } else {
                     selectedOptions.push({
                         category: category,
@@ -34,7 +34,9 @@
 
                     localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
                     button.textContent = "Added";
-                    button.style.backgroundColor = "#9d81db"; // Change background color
+                    button.style.backgroundColor = "#6503e7";
+                    button.style.color = "#FFFFFF";
+                    // Change background color
                     button.disabled = true;
                     console.log(`Selected Option: Category - ${category}, Name - ${name}, Price - €${price.toFixed(2)}`);
                     console.log("Selected Options:", selectedOptions);
@@ -57,16 +59,15 @@
         });
         
 
-
         const queryParams = new URLSearchParams(window.location.search);
         const washType = queryParams.get("type");
 
         console.log("Wash Type:", washType);
 
         const washTypePrices = {
-            "small-car": 3.95,
-            "medium-car": 4.95,
-            "big-car": 5.95
+            "small-car": 4.95,
+            "medium-car": 5.95,
+            "big-car": 6.95
         };
 
         const washTypePriceElements = document.querySelectorAll("#wash-type-price");
@@ -89,32 +90,40 @@
             washType: washType
             
         };
-
         const addButtons = document.querySelectorAll(".wash-type-add-button");
 
         addButtons.forEach(function (button) {
             button.addEventListener("click", function () {
                 const category = button.parentElement.querySelector(".wash-type-heading").textContent.toLowerCase();
                 const checkboxes = button.parentElement.querySelectorAll(".wash-type-checkbox");
-
+              console.log(checkboxes)
+              checkboxes.checked = true;
+              console.log(checkboxes)
                 checkboxes.forEach(function (checkbox) {
-                    if (checkbox.checked) {
+                  
                         const label = checkbox.parentElement.textContent;
                         const isAlreadyAdded = selectedChecklists[category].includes(label);
 
                         if (!isAlreadyAdded) {
                             selectedChecklists[category].push(label);
-
+                            
+                            checkbox.style.backgroundColor = "#6503e7";
+                            checkbox.style.clipPath = "polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)";
+                            checkbox.style.border = 'solid 1px purple'
                             button.textContent = "Added";
-                            button.style.backgroundColor = "#9d81db";
+                            button.style.backgroundColor = "#682ce8";
+                            button.style.color = "#FFFFFF";
                         } else {
                             // alert(`"${label}" is already added.`);
+                            checkbox.style.backgroundColor = "red";
+                            // checkbox.style.clipPath = "polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)";
+                            checkbox.style.border = 'solid 1px red'
                             button.textContent= " Already Added"
                             button.style.backgroundColor = "#FF0000";
                             button.style.color = "#FFFFFF";
 
                                             }
-                    }
+                    
                 });
 
                 localStorage.setItem('selectedChecklists', JSON.stringify(selectedChecklists));
@@ -161,6 +170,7 @@
 
                 if (selectedChecklists.washType === "small-car") {
                     interiorPrice = selectedChecklists.interior.length > 0 ? interiorPrice + 3.95 : 0;
+                   
                     exteriorPrice = selectedChecklists.exterior.length > 0 ? exteriorPrice + 3.95 : 0;
                 } else if (selectedChecklists.washType === "medium-car") {
                     interiorPrice = selectedChecklists.interior.length > 0 ? interiorPrice + 4.95 : 0;
@@ -172,11 +182,22 @@
 
                 const totalPrice = selectedOptionsPrice + interiorPrice + exteriorPrice;
                 const service = totalPrice * 0.25;
+                const lastprice = totalPrice + service;
+              
+                 console.log(selectedChecklists.interior.length)
+               if(selectedChecklists.interior.length != 0){
+                document.getElementById("summary-price").textContent = `€ ${interiorPrice.toFixed(2)}`;
+               }else{
+                document.getElementById("interior").textContent = "";
+               }
 
-                document.getElementById("interior-price").textContent = `Interior Price: € ${interiorPrice.toFixed(2)}`;
-                document.getElementById("exterior-price").textContent = `Exterior Price: € ${exteriorPrice.toFixed(2)}`;
-                document.getElementById("service-price").textContent = `Service Price: € ${service.toFixed(2)}`;
-                document.getElementById("total-price").textContent = `Total Price: € ${totalPrice.toFixed(2)}`;
+                if(selectedChecklists.exterior.length != 0){
+                document.getElementById("exteriorsummary-price").textContent = `€ ${exteriorPrice.toFixed(2)}`;
+                }else{
+                    document.getElementById("exterior").textContent = "";
+                }
+                document.getElementById("service-price").textContent = `€ ${service.toFixed(2)}`;
+                document.getElementById("total-price").textContent = `€ ${lastprice.toFixed(2)}`;
             }
 
             // Call the calculateTotalPrice function
@@ -184,25 +205,41 @@
             calculateTotalPrice();
             if (selectedOptions.length > 0) {
                 console.log("Selected Options:", selectedOptions);
-                const selectedOptionsDisplay = document.querySelector("#selected-options");
+                const selectedOptionsDisplay = document.querySelector("#extra-proce");
                 selectedOptionsDisplay.innerHTML = '';
-        
+            
                 const groupedOptions = groupOptionsByCategory(selectedOptions);
-                Object.keys(groupedOptions).forEach(category => {
-                    const categoryHeading = document.createElement("h2");
-                    categoryHeading.textContent = `Category: ${category}`;
-                    selectedOptionsDisplay.appendChild(categoryHeading);
-        
-                    const optionsList = document.createElement("ul");
-                    groupedOptions[category].forEach(option => {
-                        const optionItem = document.createElement("li");
-                        optionItem.textContent = `${option.name} - Price: € ${option.price.toFixed(2)}`;
-                        optionsList.appendChild(optionItem);
-                    });
-                    selectedOptionsDisplay.appendChild(optionsList);
                 
+                Object.keys(groupedOptions).forEach(category => {
+                    
+                    groupedOptions[category].forEach(option => {
+                       
+                        
+
+                        const labelElement = document.createElement("div");
+                        labelElement.className = "summary-label";
+                        labelElement.textContent = option.name;
+            
+                        const priceElement = document.createElement("div");
+                        priceElement.className = "summary-price";
+                        priceElement.textContent = `€ ${option.price.toFixed(2)}`;
+            
+                        // Create a row div to contain the label and price
+                        const optionRow = document.createElement("div");
+                        optionRow.className = "summary-row";
+            
+                        // Append the label and price to the row
+                        optionRow.appendChild(labelElement);
+                        optionRow.appendChild(priceElement);
+            
+                        // Append the row to the selectedOptionsDisplay
+                        selectedOptionsDisplay.appendChild(optionRow);
+                        selectedOptionsDisplay.style.display ="flex";
+                        selectedOptionsDisplay.style.flexDirection ="column";
+                    });
                 });
             }
+            
         
         });
 
