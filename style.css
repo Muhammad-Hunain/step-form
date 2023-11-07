@@ -31,12 +31,12 @@
 }
 .descriptions{
   display: flex;
-  justify-content:space-evenly;
+  justify-content:center;
   align-items: center;
-  width:80%;
+  width:100%;
   margin:0 auto; 
   /* margin-left: 290px; */
-  gap: 3%;
+  gap: 11%;
 
   
 }
@@ -51,6 +51,7 @@
 .count h4{
   font-size: 21px;
   margin-top: -36px;
+  margin-left: -1px;
   
 }
 .count:nth-child(3){
@@ -93,7 +94,7 @@
 .wash-container {
 
   height: 435px;
-  width: 390px;
+  width: 400px;
   border: solid 1px #dbdada;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
